@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      /* Add some basic styles */
+      form {
+        width: 300px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      input[type="text"],
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      button[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button[type="submit"]:hover {
+        background-color: #3e8e41;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("#login-form").submit(function(event) {
+          event.preventDefault();
+          $.ajax({
+            type: "POST",
+            url: "https://your-server.com/send-message",
+            data: {
+              phone_number: $("#phone_number").val(),
+              message: "You have successfully logged in."
+            },
+            success: function(data) {
+              alert("Message sent!");
+            },
+            error: function(error) {
+              console.error(error);
+              alert("Failed to send message");
+            }
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <form id="login-form">
+      <input type="text" id="phone_number" placeholder="Phone Number">
+      <button type="submit">Login</button>
+    </form>
+  </body>
+</html>
